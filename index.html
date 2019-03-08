@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Form Validation</title>
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<style>
+    .main
+    {
+        margin:auto;
+    }
+</style>
+</head>
+<body>
+        <form action="#data">
+            <div class="container bg-light main p-4 mt-5">
+                    <div class="main">
+                            <h1 class="text-center">Form Validation</h1>
+                            <div class="form-group">
+                                 <label for="name">Name:</label> 
+                                <input class="form-control" type="text" name="name" id="name" maxlength="30" placeholder="Enter your name"> 
+                                <span id="spnname" style="color:red; font-weight: bold;"></span>
+                            </div>
+                            <div class="form-group">
+                                 <label for="fname">Father name:</label> 
+                                <input class="form-control" type="text" name="fname" id="fname" placeholder="Enter you father name"> 
+                                <span id="spnfname" style="color:red; font-weight: bold;"></span>
+                            </div>
+                            <div class="form-group">
+                                 <label for="num">Mobile No:</label> 
+                                <input class="form-control" type="text" name="num" id="num" placeholder="Enter your mobile no."> 
+                                <span id="spnnum" style="color:red; font-weight: bold;"></span>
+                            </div>
+                            <div class="form-group">
+                                 <label for="mail">Email:</label> 
+                                <input class="form-control" type="text" name="mail" id="mail" placeholder="example@gmail.com"> 
+                                <span id="spnmail" style="color:red; font-weight: bold;"></span>
+                            </div>
+                            <div class="form-group">
+                              <label for="pass">Password</label>
+                              <input type="password" name="pass" id="pass" class="form-control" placeholder="*****">
+                              <span id="spnpass" style="color:red; font-weight: bold;"></span>
+                            </div>
+                            <div class="form-group">
+                                    <label for="pass">Confirm Password</label>
+                                    <input type="password" name="confpass" id="confpass" class="form-control" placeholder="*****">
+                                    <span id="spnconfpass" style="color:red; font-weight: bold;"></span>
+                                  </div>
+                            <div class="form-group">
+                                <input class="btn btn-success btn-block" type="submit" value="Submit"> 
+                            </div>
+                    </div>
+                </div>
+            </form>
+            <div class="container bg-light p-4 mt-5">
+                <table class="table table-striped table-inverse table-responsive" id="data" style="display:none; width: 100%;">
+                    <tbody>
+                        <tr>
+                            <td scope="row">Name :</td>
+                            <td id="nin"></td>
+                            
+                        </tr>
+                        <tr>
+                            <td scope="row">Father name :</td>
+                            <td id="fin" ></td>
+                        </tr>
+                        <tr>
+                            <td scope="row">Mobile No :</td>
+                            <td id="min" ></td>
+                            
+                        </tr>
+                        <tr>
+                            <td scope="row">Email :</td>
+                            <td id="ein" ></td>
+                        </tr>
+                        <tr>
+                            <td scope="row">Password</td>
+                            <td id="pin"></td>
+                            
+                        </tr>
+                    </tbody>
+                </div>
+            </table>
+            <script>
+                $(document).submit(function()
+                {
+                    let name = $('#name').val();
+                    let fname =$('#fname').val();
+                    let num =$('#num').val();
+                    let mail =$('#mail').val();
+                    let pass =$('#pass').val();
+                    let confpass =$('#confpass').val();
+                    function validateEmail(mail) 
+                        {
+                            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,3}))$/;
+                            return re.test(mail);
+                        }
+                        function validateEmail(name) 
+                        {
+                            var na = /^(([A-Z]){2,30})|([a-z]{2,30})$/;
+                            return na.test(name);
+                        }
+                        function validateEmail(fname) 
+                        {
+                            var na = /^(([A-Z]){2,30})|([a-z]{2,30})$/;
+                            return na.test(fname);
+                        }
+                    console.log(name.length);
+                    if(name == "")
+                    {
+                        $('#spnname').html("Please fill the Name Field !");
+                        return false;
+                    }
+                    else if(!(validateEmail(name)))
+                    {
+                        $('#spnname').html("Please Enter valid name !");
+                        return false;
+                    }
+                    else
+                    {
+                        $('#spnname').html("");
+                    }
+                    if(fname == "")
+                    {
+                        $('#spnfname').html("Please fill the Name Field !");
+                        return false;
+                    }
+                    else if(!(validateEmail(fname)))
+                    {
+                        $('#spnfname').html("Please Enter valid name !");
+                        return false;
+                    }
+                    else
+                    {
+                        $('#spnfname').html("");
+                    }
+                    if(num == "")
+                    {
+                        $('#spnnum').html("Please fill the Name Field !");
+                        return false;
+                    }
+                    else if(num.length != 10)
+                    {
+                        $('#spnnum').html("Please Enter valid mobile number **");
+                        return false;
+                    }
+                    else if(!($.isNumeric(num)))
+                    {
+                        $('#spnnum').html("Please enter only numarice value **");
+                        return false;
+                    }
+                    else
+                    {
+                        $('#spnnum').html("");
+                    }
+                    if(mail == "")
+                    {
+                        $('#spnmail').html("Please fill the email address !");
+                        return false;
+                    }
+                    else if(!(validateEmail(mail)))
+                    {
+                        $('#spnmail').html("Please enter correct email address **");
+                        return false;
+                    }
+                    else
+                    {
+                        $('#spnmail').html("");
+                    }
+                    if(pass == "")
+                    {
+                        $('#spnpass').html("Please fill the Name Field !");
+                        return false;
+                    }
+                    else if(pass.length < 8)
+                    {
+                        $('#spnpass').html("Password may content min. 8 charecter **");
+                        return false;
+                    }
+                    else
+                    {
+                        $('#spnpass').html("");
+                    }
+                    if(confpass == "")
+                    {
+                        $('#spnconfpass').html("Please fill the Name Field !");
+                        return false;
+                    }
+                    else if(confpass != pass)
+                    {
+                        $('#spnconfpass').html("Password not match  **");
+                        return false;
+                    }
+                    else
+                    {
+                        $('#spnconfpass').html("");
+                    }
+                    $('#nin').html(name);
+                    $('#fin').html(fname);    
+                    $('#min').html(num);    
+                    $('#ein').html(mail);    
+                    $('#pin').html(pass);  
+                    $('.main').hide();  
+                    $('#data').css("display","block"); 
+                });
+            </script>
+</body>
+</html>
